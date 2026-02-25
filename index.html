@@ -53,20 +53,29 @@ margin-top:6px;
 <body>
 
 <div class="sidebar">
-<h2>Trademark Regions</h2>
+<h2 id="sidebarTitle">Trademark Regions</h2>
 <ul>
-<li onclick="filterRegion('all')">All</li>
-<li onclick="filterRegion('greaterchina')">Greater China</li>
-<li onclick="filterRegion('asia')">Asia</li>
-<li onclick="filterRegion('sea')">Southeast Asia</li>
-<li onclick="filterRegion('na')">North America</li>
-<li onclick="filterRegion('latam')">Latin America</li>
-<li onclick="filterRegion('europe')">Europe</li>
+<li onclick="filterRegion('all')" id="navAll">All</li>
+<li onclick="filterRegion('greaterchina')" id="navGC">Greater China</li>
+<li onclick="filterRegion('asia')" id="navAsia">Asia</li>
+<li onclick="filterRegion('sea')" id="navSEA">Southeast Asia</li>
+<li onclick="filterRegion('na')" id="navNA">North America</li>
+<li onclick="filterRegion('latam')" id="navLATAM">Latin America</li>
+<li onclick="filterRegion('europe')" id="navEU">Europe</li>
 </ul>
 </div>
 
 <div class="main">
 <div class="header">
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<h1 id="title">Global Trademark Search Dashboard</h1>
+
+<div>
+<button onclick="setLang('zh')" style="margin-right:8px;">中文</button>
+<button onclick="setLang('en')">EN</button>
+</div>
+
+</div>
 <h1>Global Trademark Search Dashboard</h1>
 <div class="search-box">
 <input type="text" id="searchInput" placeholder="Search country or office...">
@@ -190,28 +199,39 @@ margin-top:6px;
 </div>
 
 <script>
-const input=document.getElementById("searchInput");
-const cards=document.querySelectorAll(".card");
-
-input.addEventListener("keyup",function(){
-const filter=input.value.toLowerCase();
-cards.forEach(card=>{
-const name=card.getAttribute("data-name").toLowerCase();
-card.style.display=name.includes(filter)?"block":"none";
-});
-});
-
-function filterRegion(region){
-cards.forEach(card=>{
-if(region==="all"){
-card.style.display="block";
-}else{
-card.style.display=
-card.getAttribute("data-region")===region?"block":"none";
+const translations = {
+zh: {
+title: "全球商标查询系统",
+sidebarTitle: "商标区域",
+navAll: "全部",
+navGC: "中国及港澳台",
+navAsia: "东亚/南亚",
+navSEA: "东南亚",
+navNA: "北美",
+navLATAM: "拉美",
+navEU: "欧洲"
+},
+en: {
+title: "Global Trademark Search Dashboard",
+sidebarTitle: "Trademark Regions",
+navAll: "All",
+navGC: "Greater China",
+navAsia: "Asia",
+navSEA: "Southeast Asia",
+navNA: "North America",
+navLATAM: "Latin America",
+navEU: "Europe"
 }
-});
+};
+
+function setLang(lang){
+for(const key in translations[lang]){
+document.getElementById(key).innerText =
+translations[lang][key];
+}
 }
 </script>
 
 </body>
 </html>
+
