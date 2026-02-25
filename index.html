@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>全球商标检索中心 Pro</title>
+
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg,#f5f7fa,#e4ecf5);
+    margin: 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 30px 0 10px;
+}
+
+.search-box {
+    margin: 20px auto;
+    width: 60%;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+}
+.category {
+    font-size: 12px;
+    color: gray;
+    margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌍 全球商标检索中心 Pro</h1>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="输入国家或机构名称...">
+</div>
+
+<div class="container" id="cardContainer">
+
+<div class="card" data-name="中国 CNIPA 国家知识产权局">
+<a href="https://sbj.cnipa.gov.cn/" target="_blank">
+🇨🇳 中国商标局
+</a>
+<div class="category">亚洲</div>
+</div>
+
+<div class="card" data-name="美国 USPTO">
+<a href="https://tmsearch.uspto.gov/" target="_blank">
+🇺🇸 美国 USPTO
+</a>
+<div class="category">北美</div>
+</div>
+
+<div class="card" data-name="欧盟 EUIPO">
+<a href="https://euipo.europa.eu/" target="_blank">
+🇪🇺 欧盟 EUIPO
+</a>
+<div class="category">欧洲</div>
+</div>
+
+<div class="card" data-name="日本 JPO J-PLATPAT">
+<a href="https://www.j-platpat.inpit.go.jp/" target="_blank">
+🇯🇵 日本
+</a>
+<div class="category">亚洲</div>
+</div>
+
+<div class="card" data-name="韩国 KIPRIS">
+<a href="https://www.kipris.or.kr/" target="_blank">
+🇰🇷 韩国
+</a>
+<div class="category">亚洲</div>
+</div>
+
+<div class="card" data-name="英国 UK IPO">
+<a href="https://www.gov.uk/search-for-trademark" target="_blank">
+🇬🇧 英国
+</a>
+<div class="category">欧洲</div>
+</div>
+
+<div class="card" data-name="WIPO World Intellectual Property Organization">
+<a href="https://www3.wipo.int/branddb/en/" target="_blank">
+🌍 WIPO 全球数据库
+</a>
+<div class="category">国际</div>
+</div>
+
+<div class="card" data-name="新加坡 IPOS">
+<a href="https://www.ipos.gov.sg/" target="_blank">
+🇸🇬 新加坡
+</a>
+<div class="category">亚洲</div>
+</div>
+
+<div class="card" data-name="澳大利亚 IP Australia">
+<a href="https://search.ipaustralia.gov.au/" target="_blank">
+🇦🇺 澳大利亚
+</a>
+<div class="category">大洋洲</div>
+</div>
+
+<div class="card" data-name="加拿大 CIPO">
+<a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en" target="_blank">
+🇨🇦 加拿大
+</a>
+<div class="category">北美</div>
+</div>
+
+</div>
+
+<script>
+const input = document.getElementById('searchInput');
+const cards = document.querySelectorAll('.card');
+
+input.addEventListener('keyup', function() {
+    const filter = input.value.toLowerCase();
+    cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(filter)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
