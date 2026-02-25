@@ -1,47 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Global Trademark Dashboard</title>
+<title>Global Trademark Intelligence Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
-body{display:flex;background:#f4f6f9;}
-.sidebar{width:240px;background:#111827;color:white;height:100vh;padding:20px;}
-.sidebar h2{margin-bottom:25px;font-size:18px;}
-.sidebar ul{list-style:none;}
-.sidebar li{margin:12px 0;cursor:pointer;opacity:0.85;}
-.sidebar li:hover{opacity:1;}
-.main{flex:1;padding:30px;}
-.header{margin-bottom:25px;}
-.header h1{font-size:24px;color:#111827;}
-.search-box input{
-width:100%;padding:10px;border-radius:6px;
-border:1px solid #d1d5db;margin-top:15px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
+
+body{
+display:flex;
+background:#f3f4f6;
+color:#111827;
+}
+
+.sidebar{
+width:240px;
+background:#111827;
+color:white;
+height:100vh;
+padding:24px;
+}
+
+.sidebar h2{
+font-size:18px;
+margin-bottom:24px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+margin:12px 0;
+cursor:pointer;
+opacity:0.85;
+font-size:14px;
+}
+
+.sidebar li:hover{
+opacity:1;
+}
+
+.main{
+flex:1;
+padding:32px;
+}
+
+.header{
+margin-bottom:24px;
+}
+
+.header h1{
+font-size:24px;
+margin-bottom:16px;
+}
+
+.search-box input{
+width:100%;
+padding:10px;
+border-radius:6px;
+border:1px solid #d1d5db;
+}
+
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-gap:18px;margin-top:25px;
+gap:18px;
+margin-top:28px;
 }
+
 .card{
 background:white;
 padding:18px;
-border-radius:8px;
+border-radius:10px;
 border:1px solid #e5e7eb;
 transition:0.2s;
 }
+
 .card:hover{
-box-shadow:0 6px 16px rgba(0,0,0,0.06);
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 transform:translateY(-3px);
 }
+
 .card a{
 text-decoration:none;
 font-weight:600;
 color:#111827;
 display:block;
 }
+
 .region{
 font-size:12px;
 color:#6b7280;
@@ -52,44 +105,24 @@ margin-top:6px;
 
 <body>
 
-<div class="header">
-
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
-
-<h1 id="title">Global Trademark Search Dashboard</h1>
-
-<div>
-<button onclick="setLang('zh')" 
-style="padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;background:white;cursor:pointer;margin-right:6px;">
-中文
-</button>
-
-<button onclick="setLang('en')" 
-style="padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;background:white;cursor:pointer;">
-EN
-</button>
-</div>
-
-</div>
-
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="Search country or office...">
-</div>
-
+<div class="sidebar">
+<h2>Continents</h2>
+<ul>
+<li onclick="filterRegion('all')">All</li>
+<li onclick="filterRegion('asia')">Asia</li>
+<li onclick="filterRegion('europe')">Europe</li>
+<li onclick="filterRegion('northamerica')">North America</li>
+<li onclick="filterRegion('southamerica')">South America</li>
+<li onclick="filterRegion('africa')">Africa</li>
+<li onclick="filterRegion('oceania')">Oceania</li>
+<li onclick="filterRegion('antarctica')">Antarctica</li>
+</ul>
 </div>
 
 <div class="main">
+
 <div class="header">
-<div style="display:flex;justify-content:space-between;align-items:center;">
-<h1 id="title">Global Trademark Search Dashboard</h1>
-
-<div>
-<button onclick="setLang('zh')" style="margin-right:8px;">中文</button>
-<button onclick="setLang('en')">EN</button>
-</div>
-
-</div>
-<h1>Global Trademark Search Dashboard</h1>
+<h1>Global Trademark Intelligence Dashboard</h1>
 <div class="search-box">
 <input type="text" id="searchInput" placeholder="Search country or office...">
 </div>
@@ -97,155 +130,123 @@ EN
 
 <div class="grid" id="cardContainer">
 
-<!-- Greater China -->
-<div class="card" data-region="greaterchina" data-name="China CNIPA">
-<a href="https://sbj.cnipa.gov.cn/" target="_blank">🇨🇳 China CNIPA</a>
-<div class="region">Greater China</div>
-</div>
-
-<div class="card" data-region="greaterchina" data-name="Hong Kong IPD">
-<a href="https://esearch.ipd.gov.hk/" target="_blank">🇭🇰 Hong Kong IPD</a>
-<div class="region">Greater China</div>
-</div>
-
-<div class="card" data-region="greaterchina" data-name="Taiwan TIPO">
-<a href="https://tiponet.tipo.gov.tw/" target="_blank">🇹🇼 Taiwan TIPO</a>
-<div class="region">Greater China</div>
-</div>
-
-<div class="card" data-region="greaterchina" data-name="Macao DSEDT">
-<a href="https://www.dsedt.gov.mo/" target="_blank">🇲🇴 Macao DSEDT</a>
-<div class="region">Greater China</div>
-</div>
-
 <!-- Asia -->
+<div class="card" data-region="asia" data-name="China CNIPA">
+<a href="https://sbj.cnipa.gov.cn/" target="_blank">China – CNIPA</a>
+<div class="region">Asia</div>
+</div>
+
+<div class="card" data-region="asia" data-name="Hong Kong IPD">
+<a href="https://esearch.ipd.gov.hk/" target="_blank">Hong Kong – IPD</a>
+<div class="region">Asia</div>
+</div>
+
+<div class="card" data-region="asia" data-name="Taiwan TIPO">
+<a href="https://tiponet.tipo.gov.tw/" target="_blank">Taiwan – TIPO</a>
+<div class="region">Asia</div>
+</div>
+
+<div class="card" data-region="asia" data-name="Macao DSEDT">
+<a href="https://www.dsedt.gov.mo/" target="_blank">Macao – DSEDT</a>
+<div class="region">Asia</div>
+</div>
+
 <div class="card" data-region="asia" data-name="Japan JPO">
-<a href="https://www.j-platpat.inpit.go.jp/" target="_blank">🇯🇵 Japan JPO</a>
+<a href="https://www.j-platpat.inpit.go.jp/" target="_blank">Japan – JPO</a>
 <div class="region">Asia</div>
 </div>
 
 <div class="card" data-region="asia" data-name="Korea KIPRIS">
-<a href="https://www.kipris.or.kr/" target="_blank">🇰🇷 Korea KIPRIS</a>
+<a href="https://www.kipris.or.kr/" target="_blank">Korea – KIPRIS</a>
 <div class="region">Asia</div>
 </div>
 
-<div class="card" data-region="asia" data-name="India IP">
-<a href="https://ipindia.gov.in/" target="_blank">🇮🇳 India IP Office</a>
+<div class="card" data-region="asia" data-name="India IP Office">
+<a href="https://ipindia.gov.in/" target="_blank">India – IP Office</a>
 <div class="region">Asia</div>
 </div>
 
-<!-- Southeast Asia -->
-<div class="card" data-region="sea" data-name="Singapore IPOS">
-<a href="https://tmsearch.ipos.gov.sg/" target="_blank">🇸🇬 Singapore IPOS</a>
-<div class="region">Southeast Asia</div>
-</div>
-
-<div class="card" data-region="sea" data-name="Thailand DIP">
-<a href="https://www.ipthailand.go.th/" target="_blank">🇹🇭 Thailand DIP</a>
-<div class="region">Southeast Asia</div>
-</div>
-
-<div class="card" data-region="sea" data-name="Vietnam NOIP">
-<a href="https://www.noip.gov.vn/" target="_blank">🇻🇳 Vietnam NOIP</a>
-<div class="region">Southeast Asia</div>
-</div>
-
-<div class="card" data-region="sea" data-name="Malaysia MyIPO">
-<a href="https://www.myipo.gov.my/" target="_blank">🇲🇾 Malaysia MyIPO</a>
-<div class="region">Southeast Asia</div>
-</div>
-
-<div class="card" data-region="sea" data-name="Indonesia DGIP">
-<a href="https://dgip.go.id/" target="_blank">🇮🇩 Indonesia DGIP</a>
-<div class="region">Southeast Asia</div>
-</div>
-
-<!-- North America -->
-<div class="card" data-region="na" data-name="USA USPTO">
-<a href="https://tmsearch.uspto.gov/" target="_blank">🇺🇸 USA USPTO</a>
-<div class="region">North America</div>
-</div>
-
-<div class="card" data-region="na" data-name="Canada CIPO">
-<a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en" target="_blank">🇨🇦 Canada CIPO</a>
-<div class="region">North America</div>
-</div>
-
-<div class="card" data-region="na" data-name="Mexico IMPI">
-<a href="https://marcas.impi.gob.mx/" target="_blank">🇲🇽 Mexico IMPI</a>
-<div class="region">North America</div>
-</div>
-
-<!-- Latin America -->
-<div class="card" data-region="latam" data-name="Brazil INPI">
-<a href="https://www.gov.br/inpi/" target="_blank">🇧🇷 Brazil INPI</a>
-<div class="region">Latin America</div>
-</div>
-
-<div class="card" data-region="latam" data-name="Argentina INPI">
-<a href="https://www.argentina.gob.ar/inpi" target="_blank">🇦🇷 Argentina INPI</a>
-<div class="region">Latin America</div>
-</div>
-
-<div class="card" data-region="latam" data-name="Chile INAPI">
-<a href="https://www.inapi.cl/" target="_blank">🇨🇱 Chile INAPI</a>
-<div class="region">Latin America</div>
+<div class="card" data-region="asia" data-name="Singapore IPOS">
+<a href="https://tmsearch.ipos.gov.sg/" target="_blank">Singapore – IPOS</a>
+<div class="region">Asia</div>
 </div>
 
 <!-- Europe -->
 <div class="card" data-region="europe" data-name="EUIPO">
-<a href="https://euipo.europa.eu/" target="_blank">🇪🇺 EUIPO</a>
+<a href="https://euipo.europa.eu/" target="_blank">European Union – EUIPO</a>
 <div class="region">Europe</div>
 </div>
 
-<div class="card" data-region="europe" data-name="UK IPO">
-<a href="https://www.gov.uk/search-for-trademark" target="_blank">🇬🇧 UK IPO</a>
+<div class="card" data-region="europe" data-name="United Kingdom IPO">
+<a href="https://www.gov.uk/search-for-trademark" target="_blank">United Kingdom – UK IPO</a>
 <div class="region">Europe</div>
 </div>
 
 <div class="card" data-region="europe" data-name="Russia Rospatent">
-<a href="https://www.fips.ru/" target="_blank">🇷🇺 Russia Rospatent</a>
+<a href="https://www.fips.ru/" target="_blank">Russia – Rospatent</a>
 <div class="region">Europe</div>
+</div>
+
+<!-- North America -->
+<div class="card" data-region="northamerica" data-name="United States USPTO">
+<a href="https://tmsearch.uspto.gov/" target="_blank">United States – USPTO</a>
+<div class="region">North America</div>
+</div>
+
+<div class="card" data-region="northamerica" data-name="Canada CIPO">
+<a href="https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en" target="_blank">Canada – CIPO</a>
+<div class="region">North America</div>
+</div>
+
+<!-- South America -->
+<div class="card" data-region="southamerica" data-name="Brazil INPI">
+<a href="https://www.gov.br/inpi/" target="_blank">Brazil – INPI</a>
+<div class="region">South America</div>
+</div>
+
+<!-- Africa -->
+<div class="card" data-region="africa" data-name="South Africa CIPC">
+<a href="https://www.cipc.co.za/" target="_blank">South Africa – CIPC</a>
+<div class="region">Africa</div>
+</div>
+
+<!-- Oceania -->
+<div class="card" data-region="oceania" data-name="Australia IP Australia">
+<a href="https://search.ipaustralia.gov.au/" target="_blank">Australia – IP Australia</a>
+<div class="region">Oceania</div>
+</div>
+
+<div class="card" data-region="oceania" data-name="New Zealand IPONZ">
+<a href="https://www.iponz.govt.nz/" target="_blank">New Zealand – IPONZ</a>
+<div class="region">Oceania</div>
 </div>
 
 </div>
 </div>
 
 <script>
-const translations = {
-zh: {
-title: "全球商标查询系统",
-sidebarTitle: "商标区域",
-navAll: "全部",
-navGC: "中国及港澳台",
-navAsia: "东亚/南亚",
-navSEA: "东南亚",
-navNA: "北美",
-navLATAM: "拉美",
-navEU: "欧洲"
-},
-en: {
-title: "Global Trademark Search Dashboard",
-sidebarTitle: "Trademark Regions",
-navAll: "All",
-navGC: "Greater China",
-navAsia: "Asia",
-navSEA: "Southeast Asia",
-navNA: "North America",
-navLATAM: "Latin America",
-navEU: "Europe"
-}
-};
+const input=document.getElementById("searchInput");
+const cards=document.querySelectorAll(".card");
 
-function setLang(lang){
-for(const key in translations[lang]){
-document.getElementById(key).innerText =
-translations[lang][key];
+input.addEventListener("keyup",function(){
+const filter=input.value.toLowerCase();
+cards.forEach(card=>{
+const name=card.getAttribute("data-name").toLowerCase();
+card.style.display=name.includes(filter)?"block":"none";
+});
+});
+
+function filterRegion(region){
+cards.forEach(card=>{
+if(region==="all"){
+card.style.display="block";
+}else{
+card.style.display=
+card.getAttribute("data-region")===region?"block":"none";
 }
+});
 }
 </script>
 
 </body>
 </html>
-
-
